@@ -1,13 +1,15 @@
+import Router from 'next/router';
 import Layout from '../components/MyLayout';
 
-const About = () => {
+function About() {
   return (
-    <>
-      <Layout>
-        <h2>About me</h2>
-      </Layout>
-    </>
+    <Layout>
+      {/* <a onClick={() => Router.push('/')}> */}
+      <a onClick={() => Router.replace('/')}> {/** remplazamos la ruta y no se carga en history */}
+        go to home
+      </a>
+    </Layout>
   );
-};
+}
 
 export default About;
