@@ -2,26 +2,17 @@ import allQuotes from '../../quotes.json';
 import Cors from 'micro-cors';
 
 const cors = Cors({
-  allowMethods: ['GET', 'HEAD'],
+  allowMethods: ['POST']
 });
 
 const handler = (req, res) => {
-
-  const { author } = req.query;
-  let quotes = allQuotes;
-  
-  if(author) {
-    quotes = quotes.filter(quote => quote.author.toLowerCase().includes(author.toLowerCase()));
-  }
-
-  if(!quotes.length) {
-    //enviamos un elemento aleatorio
-    quotes = allQuotes.filter(quote => quote.author.toLowerCase() === 'unknown');
-  }
-
-  const quote = quotes[Math.floor(Math.random() * quotes.length)];
-
-  res.status(200).json(quote);
+  console.log(req.body);
+    try {
+      res.status(200).json({data: req.body, pararm: req.query});
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: 'error de servidor'});
+    }
 };
 
 export default cors(handler);

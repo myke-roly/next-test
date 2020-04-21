@@ -2,22 +2,30 @@ import {useRouter} from 'next/router';
 import useSWR from 'swr';
 import Layout from '../components/MyLayout';
 import Head from 'next/head';
-
-/** consumimos datos desde nuestra api/randomQuote */
-function fetcher(url) {
-  return fetch(url).then(res => res.json());
-}
+import axios from 'axios';
+import { useState } from 'react';
 
 export default function Api() {
-  const { query } = useRouter();
+  const newUser = async () => {
+    const response = await axios.get(`/api/getApi`);
+    const data = await response;
 
-  const { data, error } = useSWR(`/api/randomQuote${query.author ? '?author=' + query.author : ''}` ,fetcher);
+    console.log(data);
+  }
 
-  const author = data && data.author; // data?.author
-  let quote = data && data.quote; // data?.quote
+  const [state, setState] = useState({
+    name: ''
+  })
 
-  if(!data) return 'Loading...';
-  if(error) return 'Failed to fetch the quote';
+  const fetchPost = async (d) => {
+    const response = await axios.post('/api/randomQuote', d);
+    console.log(response);
+  } 
+
+  const getuser = (e) => {
+    e.preventDefault();
+    fetchPost(state)
+  }
 
   return (
     <>
@@ -28,10 +36,14 @@ export default function Api() {
     <Layout>
       <main>
           <div className="quote">
-            {quote}
+            <button onClick={newUser}>new User</button>
           </div>
-            {author && <i>- {author}</i>}
       </main>
+
+      <form onSubmit={getuser}>
+        <input type="text" value={state.name} onChange={(e) => setState({name: e.target.value})} />
+        <input type="submit" value="enviar" />
+      </form>
 
       <style jsx>{`
         main {
