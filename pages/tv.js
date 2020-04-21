@@ -50,7 +50,7 @@ Tv.getInitialProps = async (ctx) => {
   const data = await res.json();
   console.log(process.env.URL);
   const url = `${process.env.URL}/auth`;
-  const response = await fetch(url);
+  const response = await fetch('/auth');
   const msg = await response.json();
 
   return { msg, shows: data.map((entry) => entry.show) };
