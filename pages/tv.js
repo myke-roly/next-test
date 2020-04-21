@@ -2,6 +2,7 @@ import Layout from '../components/MyLayout';
 import Link from 'next/link';
 import Head from 'next/head';
 import fetch from 'isomorphic-unfetch';
+import axios from 'axios'
 
 const Tv = ({ shows, msg }) => {
   console.log(msg);
@@ -47,7 +48,9 @@ const Tv = ({ shows, msg }) => {
 Tv.getInitialProps = async (ctx) => {
   const res = await fetch('https://api.tvmaze.com/search/shows?q=avengers');
   const data = await res.json();
-  const response = await fetch('http://localhost:3000/api/auth');
+  console.log(process.env.URL);
+  const url = `${process.env.URL}/auth`;
+  const response = await fetch(url);
   const msg = await response.json();
 
   return { msg, shows: data.map((entry) => entry.show) };

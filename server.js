@@ -3,10 +3,11 @@ const isDev = process.env.NODE_ENV !== "production";
 
 const envFile = isDev ? `.env.${process.env.NODE_ENV}` : ".env";
 dotenv.config({ path: envFile });
-
+const routes = require('./routes');
+const PORT = process.env.PORT || 3000;
 const next = require("next");
 const app = next({ dev: isDev });
-const handler = app.getRequestHandler();
+const handler = routes.getRequestHandler(app);
 const bodyParser = require("body-parser");
 const express = require("express");
 
@@ -16,12 +17,14 @@ app.prepare().then(() => {
     server.use(bodyParser.urlencoded({ extended: false }));
     server.use(bodyParser.json());
 
-    server.get('/api/auth', (req, res) => {
-      res.status(200).json({ message: 'This is from express server!!'});
+    server.get('/auth', (req, res) => {
+      const message = 'This is from express server!!';
+      console.log(message);
+      res.status(200).json({ message});
     })
 
     server.use(handler);
 
-    server.listen(3000);
-    console.log('Server on port 3000');
+    server.listen(PORT);
+    console.log(`Server on port ${process.env.PORT} | Url: ${process.env.URL}`);
 });
