@@ -6,7 +6,6 @@ const Header = () => {
       <nav>
         <ul style={linkStyle}>
           <li><Link href="/"><a>Home</a></Link></li>
-          <li><Link href="/about"><a>About</a></Link></li>
           <li><Link href="/tv"><a>Tv</a></Link></li>
           <li><Link href="/quote"><a>quote-api</a></Link></li>
           <li><Link href="/custom-server"><a>CustomServer</a></Link></li>

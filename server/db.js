@@ -1,5 +1,5 @@
 const mongosse = require('mongoose');
-require('dotenv').config({ path: '.env' });
+require('dotenv').config();
 
 const connectDB = async () => {
   await mongosse.connect(process.env.MONGO_URL, {

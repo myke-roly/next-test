@@ -1,8 +1,8 @@
+import { useState, useEffect } from 'react';
 import Layout from '../components/MyLayout';
 import Head from 'next/head';
 import fetch from 'isomorphic-unfetch';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
 
 const CustomServer = () => {
   const [state, setState] = useState({
@@ -15,8 +15,9 @@ const CustomServer = () => {
 
   useEffect(() => {
     const getUsers = async () => {
-      const url = `${process.env.URL}/auth`;
-      const response = await fetch('/auth');
+      const url = `${process.env.URL}/api/auth`;
+      console.log(url)
+      const response = await fetch(url);
       const users = await response.json();
       if(response.status === 200) setData(users);
     }
@@ -33,7 +34,7 @@ const CustomServer = () => {
   const fetchData = async () => {
     const { name, email } = state;
     if(!state.name || !state.email ) return;
-    const response = await axios.post('/auth', { name, email });
+    const response = await axios.post('/api/auth', { name, email });
     setState({ msg: response.data.message});
   };
 

@@ -5,8 +5,8 @@ const cors = Cors({
 })
 
 const user = {
-  name: 'Json',
-  email: 'json@json.com',
+  name: 'Mike',
+  email: 'mike@json.com',
 }
 
 const handler = (req, res) => {
