@@ -6,6 +6,7 @@ module.exports = {
     return {
       '/': { page: '/' },
       '/about': { page: '/about' },
+      '/custon-server': { page: '/custom-server'},
       '/p/hello-next': { page: '/post', query: { title: 'hello-nextjssss' } },
       '/p/learn-next': { page: '/post', query: { title: 'learn-nextjssss' } },
       '/p/deploy-next': { page: '/post', query: { title: 'deploy-nextjssss' } },

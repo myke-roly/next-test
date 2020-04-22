@@ -1,59 +1,80 @@
-import {useRouter} from 'next/router';
-import useSWR from 'swr';
+import { useState, useEffect } from 'react';
 import Layout from '../components/MyLayout';
 import Head from 'next/head';
 import axios from 'axios';
-import { useState } from 'react';
 
 export default function Api() {
-  const newUser = async () => {
-    const response = await axios.get(`/api/getApi`);
-    const data = await response;
+  const [list, setList] = useState({});
 
-    console.log(data);
-  }
+  useEffect(() => {
+    const getUser = async () => {
+      const response = await axios.get(`/api/getApi`);
+      setList(response.data);
+      console.log(response.data);
+    };
+    getUser();
+  }, []);
 
-  const [state, setState] = useState({
-    name: ''
-  })
+  const [state, setState] = useState({name: ''});
 
   const fetchPost = async (d) => {
-    const response = await axios.post('/api/randomQuote', d);
+    const response = await axios.post(procces.env.URL+'/api/randomQuote', d);
     console.log(response);
-  } 
+  };
 
   const getuser = (e) => {
     e.preventDefault();
-    fetchPost(state)
-  }
+    fetchPost(state);
+  };
 
   return (
     <>
-    <Head>
-      <title>quotes</title>
-      <meta name="description" content="this is a quote route" />
-    </Head>
-    <Layout>
-      <main>
-          <div className="quote">
-            <button onClick={newUser}>new User</button>
-          </div>
-      </main>
+      <Head>
+        <title>quotes</title>
+        <meta name="description" content="this is a quote route" />
+      </Head>
+      <Layout>
+        <main className="quote">
+          <h3>User List</h3>
+          <ul>
+            {list && (
+              <li>{list.name} - {list.email}</li>
+            )}
+          </ul>
+        </main>
 
-      <form onSubmit={getuser}>
-        <input type="text" value={state.name} onChange={(e) => setState({name: e.target.value})} />
-        <input type="submit" value="enviar" />
-      </form>
+        <form onSubmit={getuser}>
+          <input
+            type="text"
+            value={state.name}
+            onChange={(e) => setState({ name: e.target.value})}
+          />
+          <input className="btn" type="submit" value="enviar" />
+        </form>
 
-      <style jsx>{`
-        main {
-          margin-top: 1rem;
-          padding: 1rem;
-          border: 2px solid green;
-          color: #fff;
-        }
-      `}</style>
-    </Layout>
+        <style jsx>{`
+          main {
+            margin-top: 1rem;
+            margin: 1rem;
+            color: #fff;
+          }
+          li {
+            margin: 1rem;
+          }
+          input {
+            padding: 0.7rem 1rem;
+            border: none;
+            border-radius: 5px;
+            margin: 0.5rem 0;
+          }
+          .btn {
+            margin-left: .5em;
+            background: black;
+            border: none;
+            color: white;
+          }
+        `}</style>
+      </Layout>
     </>
-  )
-} 
+  );
+}

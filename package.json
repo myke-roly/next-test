@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "nodemon node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js"
   },
@@ -21,6 +21,7 @@
     "mongoose": "^5.9.10",
     "next": "^9.2.2",
     "next-routes": "^1.4.2",
+    "nodemon": "^2.0.3",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-markdown": "^4.3.1",

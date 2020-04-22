@@ -4,8 +4,8 @@ import Head from 'next/head';
 import fetch from 'isomorphic-unfetch';
 import axios from 'axios'
 
-const Tv = ({ shows, msg }) => {
-  console.log(msg);
+const Tv = ({ shows }) => {
+  // console.log(msg);
   return (
     <>
       <Head>
@@ -24,7 +24,7 @@ const Tv = ({ shows, msg }) => {
               </li>
             ))}
           </ul>
-          <button>{msg.message}</button>
+          {/* <button>{msg.message}</button> */}
           <style jsx>
             {`
               a {
@@ -48,12 +48,11 @@ const Tv = ({ shows, msg }) => {
 Tv.getInitialProps = async (ctx) => {
   const res = await fetch('https://api.tvmaze.com/search/shows?q=avengers');
   const data = await res.json();
-  console.log(process.env.URL);
-  const url = `${process.env.URL}/auth`;
-  const response = await fetch(url);
-  const msg = await response.json();
+  // const url = `${process.env.URL}/auth`;
+  // const response = await fetch(url);
+  // const msg = await response.json();
 
-  return { msg, shows: data.map((entry) => entry.show) };
+  return { shows: data.map((entry) => entry.show) };
 };
 
 export default Tv;

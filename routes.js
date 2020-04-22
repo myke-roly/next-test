@@ -1,3 +1,5 @@
-const routes = require("next-routes");
+const routes = require('next-routes');
 
-module.exports = routes().add("tv", "/tv");
+module.exports = routes()
+  .add('tv', '/tv')
+  .add('custom-server', '/custom-server');
