@@ -8,7 +8,7 @@ export default function Api() {
 
   useEffect(() => {
     const getUser = async () => {
-      const response = await axios.get(process.env.URL+`/api/getApi`);
+      const response = await axios.get(`/api/getApi`);
       setList(response.data);
       console.log(response.data);
     };
@@ -18,7 +18,7 @@ export default function Api() {
   const [state, setState] = useState({name: ''});
 
   const fetchPost = async (d) => {
-    const response = await axios.post(process.env.URL+'/api/randomQuote', d);
+    const response = await axios.post('/api/randomQuote', d);
     console.log(response);
   };
 

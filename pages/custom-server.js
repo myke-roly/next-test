@@ -16,7 +16,7 @@ const CustomServer = () => {
   useEffect(() => {
     const getUsers = async () => {
       const url = `${process.env.URL}/auth`;
-      const response = await fetch(url);
+      const response = await fetch('/auth');
       const users = await response.json();
       if(response.status === 200) setData(users);
     }
@@ -33,7 +33,7 @@ const CustomServer = () => {
   const fetchData = async () => {
     const { name, email } = state;
     if(!state.name || !state.email ) return;
-    const response = await axios.post(process.env.URL+'/auth', { name, email });
+    const response = await axios.post('/auth', { name, email });
     setState({ msg: response.data.message});
   };
 
