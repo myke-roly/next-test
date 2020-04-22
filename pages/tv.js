@@ -48,8 +48,9 @@ const Tv = ({ shows }) => {
 Tv.getInitialProps = async (ctx) => {
   const res = await fetch('https://api.tvmaze.com/search/shows?q=avengers');
   const data = await res.json();
+  // console.log(process.env.URL);
   // const url = `${process.env.URL}/auth`;
-  // const response = await fetch(url);
+  // const response = await fetch('/auth');
   // const msg = await response.json();
 
   return { shows: data.map((entry) => entry.show) };
