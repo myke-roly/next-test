@@ -33,7 +33,7 @@ const CustomServer = () => {
   const fetchData = async () => {
     const { name, email } = state;
     if(!state.name || !state.email ) return;
-    const response = await axios.post(procces.env.URL+'/auth', { name, email });
+    const response = await axios.post(process.env.URL+'/auth', { name, email });
     setState({ msg: response.data.message});
   };
 

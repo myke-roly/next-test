@@ -17,10 +17,6 @@
       "static/runtime/polyfills.js",
       "static/runtime/polyfills.js.map"
     ],
-    "/about": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
     "/custom-server": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
@@ -30,10 +26,6 @@
       "static/runtime/main.js"
     ],
     "/quote": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/tv": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]
