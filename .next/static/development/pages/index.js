@@ -5849,10 +5849,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_MyLayout__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/MyLayout */ "./components/MyLayout.js");
 
 
-var _this = undefined,
-    _jsxFileName = "/home/mike/Desktop/learning/nextjs-test/pages/index.js";
-
-
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
@@ -5864,30 +5860,10 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 var PostLink = function PostLink(_ref) {
   var id = _ref.id,
       title = _ref.title;
-  return __jsx("li", {
-    __self: _this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 8,
-      columnNumber: 3
-    }
-  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
+  return __jsx("li", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
     href: "/post/[id]",
-    as: "/post/".concat(id),
-    __self: _this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 11,
-      columnNumber: 5
-    }
-  }, __jsx("a", {
-    __self: _this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 12,
-      columnNumber: 7
-    }
-  }, title)));
+    as: "/post/".concat(id)
+  }, __jsx("a", null, title)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
@@ -5934,54 +5910,15 @@ var PostLink = function PostLink(_ref) {
     });
   };
 
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_4___default.a, {
-    __self: _this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 47,
-      columnNumber: 7
-    }
-  }, __jsx("title", {
-    __self: _this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 48,
-      columnNumber: 9
-    }
-  }, "home"), __jsx("meta", {
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_4___default.a, null, __jsx("title", null, "home"), __jsx("meta", {
     name: "description",
-    content: "this is the main page...",
-    __self: _this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 49,
-      columnNumber: 9
-    }
-  })), __jsx(_components_MyLayout__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    __self: _this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 51,
-      columnNumber: 7
-    }
-  }, __jsx("h2", {
+    content: "this is the main page..."
+  })), __jsx(_components_MyLayout__WEBPACK_IMPORTED_MODULE_6__["default"], null, __jsx("h2", {
     onClick: newRoute,
-    className: "jsx-3569580810",
-    __self: _this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 52,
-      columnNumber: 9
-    }
+    className: "jsx-3569580810"
   }, "My Blog"), __jsx("form", {
     onSubmit: addLink,
-    className: "jsx-3569580810",
-    __self: _this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 53,
-      columnNumber: 9
-    }
+    className: "jsx-3569580810"
   }, __jsx("input", {
     type: "text",
     placeholder: "value...",
@@ -5989,42 +5926,23 @@ var PostLink = function PostLink(_ref) {
     onChange: function onChange(e) {
       return setLink(e.target.value);
     },
-    className: "jsx-3569580810",
-    __self: _this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 54,
-      columnNumber: 11
-    }
+    className: "jsx-3569580810"
   })), __jsx("ul", {
-    className: "jsx-3569580810",
-    __self: _this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 61,
-      columnNumber: 9
-    }
+    className: "jsx-3569580810"
   }, state.map(function (post) {
     return __jsx(PostLink, {
       key: post.id,
       id: post.id,
-      title: post.title,
-      __self: _this,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 63,
-        columnNumber: 13
-      }
+      title: post.title
     });
   })), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    id: "3569580810",
-    __self: _this
+    id: "3569580810"
   }, "h2{font-size:1.2rem;text-transform:uppercase;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL21pa2UvRGVza3RvcC9sZWFybmluZy9uZXh0anMtdGVzdC9wYWdlcy9pbmRleC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFpRTJCLEFBRzhCLGlCQUNRLHlCQUMzQiIsImZpbGUiOiIvaG9tZS9taWtlL0Rlc2t0b3AvbGVhcm5pbmcvbmV4dGpzLXRlc3QvcGFnZXMvaW5kZXguanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyB1c2VTdGF0ZSB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCBMaW5rIGZyb20gJ25leHQvbGluayc7XG5pbXBvcnQgSGVhZCBmcm9tICduZXh0L2hlYWQnO1xuaW1wb3J0IFJvdXRlciBmcm9tICduZXh0L3JvdXRlcic7XG5pbXBvcnQgTGF5b3V0IGZyb20gJy4uL2NvbXBvbmVudHMvTXlMYXlvdXQnO1xuXG5jb25zdCBQb3N0TGluayA9ICh7IGlkLCB0aXRsZSB9KSA9PiAoXG4gIDxsaT5cbiAgICB7LyogTm8gdGVuZXIgcnV0YXMgY29uIGVsIG1pc21vIHBhcmFtZXRybyB7XCJmb29cIjogXCJhYmNcIiwgXCJmb29cIjogXCI0NTZcIn0gL2FiYz9mb289NDU2ICovfVxuICAgIHsvKiBbLi4ucGFyYW1zXSBAY2FtcHR1cmFtb3MgdG9kb3MgbGFzIHJ1dGFzIC9hL2IvYy9kLi4uICovfVxuICAgIDxMaW5rIGhyZWY9XCIvcG9zdC9baWRdXCIgYXM9e2AvcG9zdC8ke2lkfWB9PlxuICAgICAgPGE+e3RpdGxlfTwvYT5cbiAgICA8L0xpbms+XG4gIDwvbGk+XG4pO1xuXG5leHBvcnQgZGVmYXVsdCAoKSA9PiB7XG4gIGNvbnN0IFtzdGF0ZSwgc2V0U3RhdGVdID0gdXNlU3RhdGUoW1xuICAgIHsgaWQ6ICdoZWxsby1uZXh0JywgdGl0bGU6ICdIZWxsbyBOZXh0LmpzJyB9LFxuICAgIHsgaWQ6ICdsZWFybi1uZXh0JywgdGl0bGU6ICdMZWFybiBOZXh0LmpzIGlzIGF3ZXNvbWUnIH0sXG4gICAgeyBpZDogJ2RlcGxveS1uZXh0JywgdGl0bGU6ICdEZXBsb3kgYXBwcyB3aXRoIFplaXQnIH1cbiAgXSk7XG5cbiAgY29uc3QgW2xpbmssIHNldExpbmtdID0gdXNlU3RhdGUoJycpO1xuXG4gIGNvbnN0IGFkZExpbmsgPSBlID0+IHtcbiAgICBlLnByZXZlbnREZWZhdWx0KCk7XG4gICAgc2V0U3RhdGUoWy4uLnN0YXRlLCB7IGlkOiBsaW5rLCB0aXRsZTogbGluayB9XSk7XG4gICAgc2V0TGluaygnJyk7XG4gIH07XG5cbiAgY29uc3QgbmV3Um91dGUgPSAoKSA9PiB7XG4gICAgUm91dGVyLmJlZm9yZVBvcFN0YXRlKCh7IHVybCwgYXMsIG9wdGlvbnMgfSkgPT4ge1xuICAgICAgLy8gSSBvbmx5IHdhbnQgdG8gYWxsb3cgdGhlc2UgdHdvIHJvdXRlcyFcbiAgICAgIGlmIChhcyAhPT0gJy8nICYmIGFzICE9PSAnL290aGVyJykge1xuICAgICAgICAvLyBIYXZlIFNTUiByZW5kZXIgYmFkIHJvdXRlcyBhcyBhIDQwNC5cbiAgICAgICAgd2luZG93LmxvY2F0aW9uLmhyZWYgPSBhcztcbiAgICAgICAgcmV0dXJuIGZhbHNlO1xuICAgICAgfVxuXG4gICAgICByZXR1cm4gdHJ1ZTtcbiAgICB9KTtcbiAgfTtcblxuICByZXR1cm4gKFxuICAgIDw+XG4gICAgICA8SGVhZD5cbiAgICAgICAgPHRpdGxlPmhvbWU8L3RpdGxlPlxuICAgICAgICA8bWV0YSBuYW1lPVwiZGVzY3JpcHRpb25cIiBjb250ZW50PVwidGhpcyBpcyB0aGUgbWFpbiBwYWdlLi4uXCIgLz5cbiAgICAgIDwvSGVhZD5cbiAgICAgIDxMYXlvdXQ+XG4gICAgICAgIDxoMiBvbkNsaWNrPXtuZXdSb3V0ZX0+TXkgQmxvZzwvaDI+XG4gICAgICAgIDxmb3JtIG9uU3VibWl0PXthZGRMaW5rfT5cbiAgICAgICAgICA8aW5wdXRcbiAgICAgICAgICAgIHR5cGU9XCJ0ZXh0XCJcbiAgICAgICAgICAgIHBsYWNlaG9sZGVyPVwidmFsdWUuLi5cIlxuICAgICAgICAgICAgdmFsdWU9e2xpbmt9XG4gICAgICAgICAgICBvbkNoYW5nZT17ZSA9PiBzZXRMaW5rKGUudGFyZ2V0LnZhbHVlKX1cbiAgICAgICAgICAvPlxuICAgICAgICA8L2Zvcm0+XG4gICAgICAgIDx1bD5cbiAgICAgICAgICB7c3RhdGUubWFwKHBvc3QgPT4gKFxuICAgICAgICAgICAgPFBvc3RMaW5rIGtleT17cG9zdC5pZH0gaWQ9e3Bvc3QuaWR9IHRpdGxlPXtwb3N0LnRpdGxlfSAvPlxuICAgICAgICAgICkpfVxuICAgICAgICA8L3VsPlxuICAgICAgICA8c3R5bGUganN4IGdsb2JhbD57YFxuICAgICAgICAgIGgyIHtcbiAgICAgICAgICAgIGZvbnQtc2l6ZTogMS4ycmVtO1xuICAgICAgICAgICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgICAgICAgICB9XG4gICAgICAgIGB9PC9zdHlsZT5cbiAgICAgIDwvTGF5b3V0PlxuICAgIDwvPlxuICApO1xufSJdfQ== */\n/*@ sourceURL=/home/mike/Desktop/learning/nextjs-test/pages/index.js */")));
 });
 
 /***/ }),
 
-/***/ 5:
+/***/ 1:
 /*!*************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2Fhome%2Fmike%2FDesktop%2Flearning%2Fnextjs-test%2Fpages%2Findex.js ***!
   \*************************************************************************************************************************************/
@@ -6047,5 +5965,5 @@ module.exports = dll_2adc2403d89adc16ead0;
 
 /***/ })
 
-},[[5,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

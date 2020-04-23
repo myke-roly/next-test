@@ -1,3 +1,4 @@
+const cors = require('cors');
 const next = require("next");
 const express = require("express");
 require("dotenv").config();
@@ -14,6 +15,7 @@ app.prepare().then(() => {
     const server = express();
     connectDB();
 
+    server.use(cors());
     server.use(bodyParser.urlencoded({ extended: false }));
     server.use(bodyParser.json());
 

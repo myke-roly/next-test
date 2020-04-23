@@ -94,7 +94,7 @@ const CustomServer = () => {
               {data &&
                 data.map((user) => (
                   <tr key={user._id}>
-                    <td contentEditable="true">{user.name}</td>
+                    <td>{user.name}</td>
                     <td>{user.email} 
                       <span className="delete" onClick={() => deletedUser(user._id)}>X</span>
                     </td>
