@@ -15,7 +15,7 @@ const CustomServer = () => {
   const [data, setData] = useState([]);
 
   const getUsers = async () => {
-    const response = await fetch(`${process.env.URL}/api/auth`);
+    const response = await fetch('/api/auth');
     const users = await response.json();
     if (response.status === 200) setData(users);
   };
@@ -34,12 +34,12 @@ const CustomServer = () => {
     const { name, email } = state;
     if (!state.name || !state.email) return;
 
-    const response = await axios.post(`${process.env.URL}/api/auth`, { name, email });
+    const response = await axios.post(`/api/auth`, { name, email });
     setState({ msg: response.data.message });
   };
 
   const deletedUser = async (id) => {
-    await axios.delete(`${process.env.URL}/api/auth/${id}`);
+    await axios.delete(`/api/auth/${id}`);
     getUsers();
   }
 
@@ -47,10 +47,6 @@ const CustomServer = () => {
     e.preventDefault();
     fetchData();
     setState({ name: '', email: '' });
-  }
-
-  function handleChange(e) {
-    setState({ ...state, [e.target.name]: e.target.value });
   }
 
   return (
@@ -68,18 +64,16 @@ const CustomServer = () => {
             <input
               type="text"
               id="name"
-              name="name"
               value={state.name}
-              onChange={handleChange}
+              onChange={e => setState({...state, name: e.target.value})}
               placeholder="No ingresar datos validos ahre!!"
             />
             <label htmlFor="email">Email: </label>
             <input
               type="email"
               id="email"
-              name="email"
               value={state.email}
-              onChange={handleChange}
+              onChange={e => setState({...state, email: e.target.value})}
             />
             <button type="submit">Save data</button>
           </form>
