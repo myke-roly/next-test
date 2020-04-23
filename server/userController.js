@@ -29,3 +29,18 @@ exports.getUsers = async (req, res) => {
     res.json({ message: 'server error!' });
   }
 };
+
+exports.deleteUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if(!user) {
+      return res.json({ message: 'Not exist this user'});
+    }    
+
+    await User.findByIdAndDelete({ _id: req.params.id });
+    res.json({ message: 'User deleted' });
+  } catch (error) {
+    console.log(error);
+    res.json({ message: 'server error!'});
+  }
+}

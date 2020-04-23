@@ -5,48 +5,52 @@ import fetch from 'isomorphic-unfetch';
 import axios from 'axios';
 
 const CustomServer = () => {
+
   const [state, setState] = useState({
     name: '',
     email: '',
-    msg: ''
+    msg: null,
   });
 
-  const [ data, setData ] = useState([]);
+  const [data, setData] = useState([]);
+
+  const getUsers = async () => {
+    const response = await fetch(`${process.env.URL}/api/auth`);
+    const users = await response.json();
+    if (response.status === 200) setData(users);
+  };
 
   useEffect(() => {
-    const getUsers = async () => {
-      const url = `${process.env.URL}/api/auth`;
-      console.log(url)
-      const response = await fetch(url);
-      const users = await response.json();
-      if(response.status === 200) setData(users);
-    }
-
     getUsers();
 
     if (state.msg) {
       setTimeout(() => {
-        setState({ msg: ''});
+        setState({ msg: '' });
       }, 3000);
     }
   }, [state.msg]);
 
   const fetchData = async () => {
     const { name, email } = state;
-    if(!state.name || !state.email ) return;
-    const response = await axios.post('/api/auth', { name, email });
-    setState({ msg: response.data.message});
+    if (!state.name || !state.email) return;
+
+    const response = await axios.post(`${process.env.URL}/api/auth`, { name, email });
+    setState({ msg: response.data.message });
   };
+
+  const deletedUser = async (id) => {
+    await axios.delete(`${process.env.URL}/api/auth/${id}`);
+    getUsers();
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
     fetchData();
-    setState({ name: '', email: ''});
+    setState({ name: '', email: '' });
   }
 
-
   function handleChange(e) {
-    setState({...state, [e.target.name]: e.target.value });
+    setState({ ...state, [e.target.name]: e.target.value });
   }
 
   return (
@@ -56,124 +60,130 @@ const CustomServer = () => {
         <meta name="description" content="this is a tv route" />
       </Head>
       <Layout>
-          <main>
-            <form onSubmit={handleSubmit}>
-              <h2>User List</h2>  
-              {state.msg && <p>{state.msg}</p>}
-              <label htmlFor="name">Name: </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={state.name}
-                onChange={handleChange}
-                placeholder="No ingresar datos validos ahre!!"
-              />
-              <label htmlFor="email">Email: </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={state.email}
-                onChange={handleChange}
-              />
-              <button type="submit">Save data</button>
-            </form>
-            <table border="1">
-              <thead>
-                <tr>
-                  <th>USERS</th>
-                  <th>@</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data && data.map((user) => (
+        <main>
+          <form onSubmit={handleSubmit}>
+            <h2>User List</h2>
+            {state.msg && <p>{state.msg}</p>}
+            <label htmlFor="name">Name: </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={state.name}
+              onChange={handleChange}
+              placeholder="No ingresar datos validos ahre!!"
+            />
+            <label htmlFor="email">Email: </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={state.email}
+              onChange={handleChange}
+            />
+            <button type="submit">Save data</button>
+          </form>
+          <table border="1">
+            <thead>
+              <tr>
+                <th>USERS</th>
+                <th>@</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data &&
+                data.map((user) => (
                   <tr key={user._id}>
-                    <td>{user.name}</td>
-                    <td>{user.email}</td>
+                    <td contentEditable="true">{user.name}</td>
+                    <td>{user.email} 
+                      <span className="delete" onClick={() => deletedUser(user._id)}>X</span>
+                    </td>
                   </tr>
                 ))}
-              </tbody>
-            </table>
-          </main>
-          <style jsx>
-            {`
+            </tbody>
+          </table>
+        </main>
+        <style jsx>
+          {`
+            main {
+              width: 100%;
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
+              grid-gap: 1rem;
+              font-family: sans-serif;
+            }
+            @media (max-width: 720px) {
               main {
-                display: flex;
-                font-family: sans-serif;
+                font-size: 14px;
               }
-              @media (max-width: 720px) {
-                main {
-                  flex-direction: column;
-                }
-              }
-              h2 {
-                color: #555; 
-                margin-bottom: 1rem;
-              }
-              table,
-              form {
-                width: 100%;
-                margin: 2rem auto;
-                background: #000;
-                padding: 2rem;
-                border: none;
-                border-radius: 5px;
-              }
-              thead {
-                background: #222;
-                color: #fff;
-              }
-              tbody {
-                background: #dedede;
-                color: #333;
-              }
-              th,
-              td {
-                border-radius: 2px;
-                padding: 0.5rem 1rem;
-                border: none;
-                box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
-              }
-              form {
-                width: 100%;
-                margin: 2rem auto;
-                background: #dedede;
-                padding: 2rem;
-              }
-              input {
-                width: 100%;
-                padding: 0.7rem 1rem;
-                border: none;
-                border-radius: 5px;
-                margin: 0.5rem 0;
-              }
-              p {
-                color: green;
-                text-transform: uppercase;
-                font-size: 1rem;
-                margin: .5rem;
-                text-align: center;
-              }
-              button {
-                padding: 0.7rem 1rem;
-                background: black;
-                border: none;
-                color: white;
-              }
-            `}
-          </style>
+            }
+            h2 {
+              color: #555;
+              margin-bottom: 1rem;
+            }
+            table {
+              grid-column-end: span 1.5;
+            }
+            table,
+            form {
+              width: 100%;
+              margin: 2rem auto;
+              background: #dedede;
+              padding: 1rem;
+              border: none;
+              border-radius: 5px;
+              box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+            }
+            thead {
+              background: #000;
+              color: #fff;
+            }
+            tbody {
+              background: #efefef;
+              color: #333;
+            }
+            th,
+            td {
+              padding: 0.7rem 1rem;
+              border: 2px solid #dedede;
+            }
+            form {
+              width: 100%;
+              margin: 2rem auto;
+              background: #dedede;
+              padding: 2rem;
+            }
+            input {
+              width: 100%;
+              padding: 0.7rem 1rem;
+              border: none;
+              border-radius: 5px;
+              margin: 0.5rem 0;
+            }
+            p {
+              color: green;
+              text-transform: uppercase;
+              font-size: 1rem;
+              margin: 0.5rem;
+              text-align: center;
+            }
+            button {
+              padding: 0.7rem 1rem;
+              background: black;
+              border: none;
+              color: white;
+            }
+            .delete {
+              float: right;
+              color: #C01D3A;
+              cursor: pointer;
+              font-weight: bold;
+            }
+          `}
+        </style>
       </Layout>
     </>
   );
 };
-
-// CustomServer.getInitialProps = async (ctx) => {
-//   const url = `${process.env.URL}/auth`;
-//   const response = await fetch(url);
-//   const data = await response.json();
-
-//   return { data };
-// };
 
 export default CustomServer;

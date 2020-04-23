@@ -7,14 +7,14 @@ const Header = () => {
         <ul style={linkStyle}>
           <li><Link href="/"><a>Home</a></Link></li>
           <li><Link href="/tv"><a>Tv</a></Link></li>
-          <li><Link href="/quote"><a>quote-api</a></Link></li>
-          <li><Link href="/custom-server"><a>CustomServer</a></Link></li>
+          <li><Link href="/quote"><a>q-api</a></Link></li>
+          <li><Link href="/custom-server"><a>Server</a></Link></li>
         </ul>
       </nav>
 
       <style jsx>{`
         header {
-          padding: 10px;
+          padding: 15px 10px;
           margin: 0;
           background: #556;
           color: white;

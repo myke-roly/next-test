@@ -10,7 +10,7 @@ const user = {
 }
 
 const handler = (req, res) => {
-    res.status(200).json(user);
+    res.status(200).json({user});
 };
 
 export default cors(handler)

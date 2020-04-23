@@ -2,15 +2,17 @@ import { useState, useEffect } from 'react';
 import Layout from '../components/MyLayout';
 import Head from 'next/head';
 import axios from 'axios';
+import fetch from 'isomorphic-unfetch';
 
-export default function Api() {
-  const [list, setList] = useState({});
+function Quotes({ list }) {
+  const [loaging, setLoading] = useState(true);
 
-  const getUser = async () => {
-    const response = await axios.get(`/api/getApi`);
-    setList(response.data);
-  }
-
+  const getUser = () => {
+    if (Object.entries(list).length === 0) {
+      return;
+    }
+    setLoading(false);
+  };
   return (
     <>
       <Head>
@@ -19,8 +21,18 @@ export default function Api() {
       </Head>
       <Layout>
         <main className="quote">
-          <h3>Welcome {list && <><p>{list.name}</p><p>{list.email}</p></>}</h3>
-          <button onClick={() => getUser()}>Get data</button>
+          {loaging ? (
+            <>
+              <p>Loading...</p>
+              <button onClick={getUser}>Get data</button>
+            </>
+          ) : (
+            <>
+              <p>{list.user.name}</p>
+              <p>{list.user.email}</p>
+              <button onClick={() => setLoading(true)}>X</button>
+            </>
+          )}
         </main>
 
         <style jsx>{`
@@ -42,3 +54,12 @@ export default function Api() {
     </>
   );
 }
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.URL + `/api/getApi`);
+  const list = await response.json();
+
+  return { props: { list } };
+}
+
+export default Quotes;

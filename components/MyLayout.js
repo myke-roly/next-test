@@ -5,14 +5,6 @@ const Layout = props => {
     <>
       <Header />
       <div className="container">{props.children}</div>
-
-      <style jsx>{`
-        .container {
-          width: 90%;
-          padding: 1rem;
-          margin: 0 auto;
-        }
-      `}</style>
     </>
   );
 };
