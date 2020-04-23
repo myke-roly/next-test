@@ -17,7 +17,7 @@ const CustomServer = () => {
     const getUsers = async () => {
       const url = `${process.env.URL}/api/auth`;
       console.log(url)
-      const response = await fetch(url);
+      const response = await fetch('/api/auth');
       const users = await response.json();
       if(response.status === 200) setData(users);
     }
